@@ -18,7 +18,7 @@ const HabitList = (props: Props) => {
       }}
     >
       {habits.map((habit) => (
-        <HabitItem {...habit} />
+        <HabitItem key={habit.id} {...habit} />
       ))}
     </Box>
   );
