@@ -8,8 +8,30 @@ import { HabitsState } from "../../types/types";
 
 const initialState: HabitsState = {
   habits: [],
+  isLoading: false,
+  isError: null,
+  isSuccess: null,
 };
-const fetchHabits = createAsyncThunk("habits/fetchHabits", async () => {});
+export const fetchHabits = createAsyncThunk("habit/fetchHabits", async () => {
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+  const mockData = [
+    {
+      id: "1",
+      name: "irem",
+      frequency: "kc",
+      completedDates: [],
+      createdAt: new Date().toISOString(),
+    },
+    {
+      id: "2",
+      name: "tugba",
+      frequency: "kc",
+      completedDates: [],
+      createdAt: new Date().toISOString(),
+    },
+  ];
+  return mockData;
+});
 
 export const habitSlice = createSlice({
   name: "habit",
@@ -45,6 +67,20 @@ export const habitSlice = createSlice({
         (habit) => habit.id !== action.payload
       );
     },
+  },
+  extraReducers(builder) {
+    builder
+      .addCase(fetchHabits.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchHabits.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = action.error.message || "Failed to fetch";
+      })
+      .addCase(fetchHabits.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.habits = action.payload;
+      });
   },
 });
 
