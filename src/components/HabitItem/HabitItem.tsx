@@ -17,7 +17,7 @@ type Props = {};
 const today = new Date().toISOString().split("T")[0];
 
 const HabitItem = ({ id, name, frequency, completedDates }: Props) => {
-  const streak = getStreak(completedDates);
+  const streak = getStreak({ id, name, frequency, completedDates });
 
   const dispatch = useDispatch();
   const handleRemoveHabit = () => {
@@ -29,14 +29,14 @@ const HabitItem = ({ id, name, frequency, completedDates }: Props) => {
   return (
     <Paper elevation={2} key={id} sx={{ p: 2 }}>
       <Grid2 container alignItems={"center"}>
-        <Grid xs={12} sm={6}>
+        <Grid>
           <Typography variant="h6">{name}</Typography>
           <Typography variant="body2" color="text.secondary">
             {frequency}
           </Typography>
         </Grid>
       </Grid2>
-      <Grid xs={12} sm={6}>
+      <Grid>
         <Box
           sx={{
             display: "flex",
