@@ -31,7 +31,7 @@ const AddHabitForm: React.FC<Props> = () => {
   };
 
   const handleSubmit = (e) => {
-    console.log(e.preventDefault());
+    e.preventDefault();
     dispatch(addHabit(habit));
     setHabit({ habitName: "", frequency: "daily" });
   };
