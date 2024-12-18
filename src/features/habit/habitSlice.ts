@@ -1,9 +1,15 @@
-import { PayloadAction, createSlice, nanoid } from "@reduxjs/toolkit";
+import {
+  PayloadAction,
+  createAsyncThunk,
+  createSlice,
+  nanoid,
+} from "@reduxjs/toolkit";
 import { HabitsState } from "../../types/types";
 
 const initialState: HabitsState = {
   habits: [],
 };
+const fetchHabits = createAsyncThunk("habits/fetchHabits", async () => {});
 
 export const habitSlice = createSlice({
   name: "habit",
