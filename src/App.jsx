@@ -1,5 +1,7 @@
-import { Button, Container, TextField, Typography } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import "./App.css";
+import AddHabitForm from "./components/AddHabitForm/AddHabitForm";
+import HabitList from "./components/HabitList/HabitList";
 
 function App() {
   return (
@@ -7,23 +9,8 @@ function App() {
       <Typography align="center" variant="h2" gutterBottom>
         Habit Tracker
       </Typography>
-      <TextField
-        sx={{ marginBottom: "20px" }}
-        fullWidth
-        id="habitName"
-        label="Habit Name"
-        variant="outlined"
-      />
-      <TextField
-        sx={{ marginBottom: "20px" }}
-        fullWidth
-        id="frequency"
-        label="Frequency"
-        variant="outlined"
-      />
-      <Button fullWidth variant="contained">
-        Add Habit
-      </Button>
+      <AddHabitForm />
+      <HabitList />
     </Container>
   );
 }
