@@ -1,8 +1,10 @@
-export const getStreak = (completedDates: string[]): number => {
-  if (!completedDates || completedDates.length === 0) return 0;
+import { HabitsState } from "../types/types";
+
+export const getStreak = (habit: HabitsState): number => {
+  if (!habit.completedDates || habit.completedDates.length === 0) return 0;
 
   const today = new Date().toISOString().split("T")[0];
-  const dates = completedDates.map((date) => new Date(date));
+  const dates = habit.completedDates.map((date) => new Date(date));
   dates.sort((a, b) => b.getTime() - a.getTime());
 
   let streak = 0;
